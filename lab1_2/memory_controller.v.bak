@@ -1,0 +1,43 @@
+module memory_controller(
+    input logic op,
+    input logic clk,
+	 input logic [7:0] data_in,
+    output logic [7:0] dataout);
+
+genvar counter;
+
+//Instatiantig memories
+
+//Distance memory -- 32 parallel blocks -- Stores distance from all nodes to origin
+logic write_dist[31:0];
+logic in_dist[31:0];
+logic out_dist[31:0];
+
+generate
+        for(counter = 0; counter < 32; counter = counter + 1) begin : dist_gen
+        begin
+            memory memory_8b_1entry(.clk(clk),.write(write_dist[counter]),.in(in_dist[counter]),.out(out_dist[counter]),.*);
+        end
+    end
+endgenerate
+    
+//Prev memory -- 1 block with 32 lines -- each line represent one node
+	 
+	 
+	 
+always @(posedge clk)
+begin
+	if (op == 1) //Initialization phase
+		begin
+		
+		
+	
+		end
+	else
+		begin //Idle
+	
+		end
+end
+
+endmodule
+
