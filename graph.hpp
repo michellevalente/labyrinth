@@ -3,8 +3,8 @@
 
 using namespace std;
 
-const int r = 10;
-const int c = 10;
+const int r = 51;
+const int c = 51;
 
 class Node{
 private:
@@ -155,7 +155,17 @@ public:
                   showNeighbor(i);
             }
       }
- 
+
+      vector<Node> getNodes()
+      {
+            return nodes;
+      }
+
+      int ** getGraph()
+      {
+            return adjMatrix;
+      }
+      
       ~Graph() {
             for (int i = 0; i < numV; i++)
                   delete[] adjMatrix[i];

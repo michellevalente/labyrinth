@@ -1,9 +1,10 @@
 import numpy
 from numpy.random import random_integers as rand
 import matplotlib.pyplot as plt
+from matplotlib import colors
 
-w = 53
-h = 53
+w = 51
+h = 51
  
 def maze(width, height, complexity=.20, density=.90):
     
@@ -38,16 +39,24 @@ def maze(width, height, complexity=.20, density=.90):
     return Z
 
 Z = maze(w, h) 
+Y = 1 - Z
+
 while( Z[h-2][w-2] == 1):
     Z = maze(w, h)
-Z[1][0] = 0
-Z[h - 2][w-1] = 0
+
+Y[1][0] = 1
+Y[h - 2][w-1] = 1
 count_one = 0
 count_zero = 0
 
+cmap = colors.ListedColormap(['black', 'white'])
+bounds=[0,1]
+norm = colors.BoundaryNorm(bounds, cmap.N)
+
 numpy.savetxt("output2.txt", Z, fmt = '%d')   
+numpy.savetxt("random_maze.txt", Y, fmt = '%d')  
 plt.figure(figsize=(8,8))
-plt.imshow(Z,cmap=plt.cm.binary,interpolation='nearest')
+plt.imshow(Y,cmap=cmap,interpolation='nearest')
 plt.xticks([]),plt.yticks([])
 plt.show()
 
