@@ -3,14 +3,15 @@
 
 using namespace std;
 
-const int r = 51;
-const int c = 51;
+const int r = 9;
+const int c = 9;
 
 class Node{
 private:
       int x;
       int y;
       int index;
+      bool dumb = 0;
 public:
       Node(int x, int y, int index)
       {
@@ -39,6 +40,16 @@ public:
             cout << "index: " << index << endl;
             cout << "x: " << x << endl;
             cout << "y: " << y << endl;
+      }
+
+      void setDumb()
+      {
+            dumb = 1;
+      }
+
+      bool isDumb()
+      {
+            return dumb;
       }
 };
 vector<Node> nodes;
@@ -165,12 +176,18 @@ public:
       {
             return adjMatrix;
       }
-      
+
+      void generateDumbNodes(int finalNumber)
+      {
+
+      }
+            
       ~Graph() {
             for (int i = 0; i < numV; i++)
                   delete[] adjMatrix[i];
             delete[] adjMatrix;
       }
+
 };
 
 bool isCorner(bool maze[r][c], int i, int j)
